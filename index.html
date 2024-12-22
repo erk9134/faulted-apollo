@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Indole</title>
-  <link rel="stylesheet" href="styles.css">
+    <title>Forum</title>
 </head>
 <body>
-  <div id="app">
-    <!-- User Prompt -->
-    <div id="userPrompt">
-      <h2>Welcome to Indole! Enter your name:</h2>
-      <input type="text" id="firstName" placeholder="First Name">
-      <input type="text" id="lastName" placeholder="Last Name">
-      <button onclick="registerUser()">Submit</button>
-    </div>
-
-    <!-- Posts Section -->
-    <div id="forum" style="display: none;">
-      <h1>Forum</h1>
-      <div id="posts"></div>
-      <textarea id="newPost" placeholder="Write your post..."></textarea>
-      <button onclick="submitPost()">Post</button>
-    </div>
-  </div>
-  <script src="script.js"></script>
+    <h1>Forum</h1>
+    <form id="postForm">
+        <textarea id="postContent" placeholder="Write your post here..." required></textarea><br>
+        <button type="submit">Submit</button>
+    </form>
+    <div id="posts"></div>
+    <script>
+        async function fetchPosts() {
+            const response = await fetch('http://your-vm-ip:5000/posts');
+            const posts = await response.json();
+            const postsDiv = document.getElementById('posts');
+            postsDiv.innerHTML = posts.map(post => `<p>${post}</p>`).join('');
+        }
+        document.getElementById('postForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const postContent = document.getElementById('postContent').value;
+            await fetch('http://your-vm-ip:5000/posts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ content: postContent })
+            });
+            document.getElementById('postContent').value = '';
+            fetchPosts();
+        });
+        fetchPosts();
+    </script>
 </body>
 </html>
