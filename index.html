@@ -1,34 +1,74 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Forum</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eric Kempson</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        header img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 20px;
+        }
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #4CAF50;
+            color: white;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Forum</h1>
-    <form id="postForm">
-        <textarea id="postContent" placeholder="Write your post here..." required></textarea><br>
-        <button type="submit">Submit</button>
-    </form>
-    <div id="posts"></div>
-    <script>
-        async function fetchPosts() {
-            const response = await fetch('http://your-vm-ip:5000/posts');
-            const posts = await response.json();
-            const postsDiv = document.getElementById('posts');
-            postsDiv.innerHTML = posts.map(post => `<p>${post}</p>`).join('');
-        }
-        document.getElementById('postForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const postContent = document.getElementById('postContent').value;
-            await fetch('http://your-vm-ip:5000/posts', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ content: postContent })
-            });
-            document.getElementById('postContent').value = '';
-            fetchPosts();
-        });
-        fetchPosts();
-    </script>
+    <header>
+        <img src="your-photo-url.jpg" alt="Eric Kempson">
+        <h1>Eric Kempson</h1>
+        <p>Bachelor of Science in Chemistry | NYU | Interested in Organometallic Catalysis</p>
+    </header>
+    <nav>
+        <a href="interests.html">Interests</a>
+        <a href="research.html">Research</a>
+        <a href="projects.html">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section>
+        <p>Welcome to my personal webpage! Explore the links above to learn more about my academic journey, research interests, and personal projects.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 Eric Kempson</p>
+    </footer>
 </body>
 </html>
