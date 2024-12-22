@@ -1,12 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indole</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Indole</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Welcome to Indole!</h1>
-    <p>Hi! This website is meant to be a small forum for people to upload whatever they want and communicate without feeling advirtised to or in fear of having their information be lifted or viewed by companies. I was inspired by a class on ethics of internet usage and hope that this can be a space between text messages, but a bit more local than instagram. Not a coder by trade either - let me know what can be added. Okie enjoy!</p>
+  <div id="app">
+    <!-- User Prompt -->
+    <div id="userPrompt">
+      <h2>Welcome! Enter your name:</h2>
+      <input type="text" id="firstName" placeholder="First Name">
+      <input type="text" id="lastName" placeholder="Last Name">
+      <button onclick="registerUser()">Submit</button>
+    </div>
+
+    <!-- Posts Section -->
+    <div id="forum" style="display: none;">
+      <h1>Forum</h1>
+      <div id="posts"></div>
+      <textarea id="newPost" placeholder="Write your post..."></textarea>
+      <button onclick="submitPost()">Post</button>
+    </div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>
